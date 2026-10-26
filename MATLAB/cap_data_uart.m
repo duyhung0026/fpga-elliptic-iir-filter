@@ -11,8 +11,8 @@ close all;
 ARCH_NAME  = 'tdf2_cascade';         % df1 / df1_cascade / tdf2_cascade
 TEST_CASE  = 'th2(250)';    % th1 / th2(150) / th2(250) / th2(350) / th3
 
-DATA_DIR   = 'D:\kltn\compare rtl vs matlab\dump_data';
-SAVE_DIR   = 'D:\kltn\compare rtl vs matlab\image_pdf\new pdf';
+DATA_DIR   = '...\...\...\dump_data';
+SAVE_DIR   = '...\...\...\image_pdf\new pdf';
 
 VREF       = 3.3;
 ADC_LEVELS = 4096;
@@ -22,8 +22,7 @@ PLOT_N     = 400;
 PDF_WIDTH_PT  = 335;
 PDF_HEIGHT_PT = 226;
 
-input_file = fullfile(DATA_DIR, ...
-    sprintf('hardware_%s(%s).txt', ARCH_NAME, TEST_CASE));
+input_file = fullfile(DATA_DIR,  sprintf('hardware_%s(%s).txt', ARCH_NAME, TEST_CASE));
 
 if ~exist(SAVE_DIR, 'dir')
     mkdir(SAVE_DIR);
@@ -34,13 +33,10 @@ adc_code = readmatrix(input_file);
 adc_code = adc_code(:);
 
 fprintf('Da doc %d mau tu:\n%s\n', numel(adc_code), input_file);
-fprintf('Min = %d, Max = %d, Mean = %.2f\n', ...
-    min(adc_code), max(adc_code), mean(adc_code));
+fprintf('Min = %d, Max = %d, Mean = %.2f\n', min(adc_code), max(adc_code), mean(adc_code));
 
 if numel(adc_code) < PLOT_N
-    warning(['File chi co %d mau, it hon PLOT_N = %d ' ...
-             '-> dung het so mau hien co.'], ...
-        numel(adc_code), PLOT_N);
+    warning(['File chi co %d mau, it hon PLOT_N = %d '  '-> dung het so mau hien co.'],  numel(adc_code), PLOT_N);
     PLOT_N = numel(adc_code);
 end
 
@@ -49,10 +45,7 @@ sample_idx = (0:PLOT_N-1)';
 
 %% VE HINH
 % Dat figure theo point de dong bo chinh xac voi PDF FFT 335 x 226 point
-fig_hw = figure( ...
-    'Units', 'points', ...
-    'Position', [100 100 PDF_WIDTH_PT PDF_HEIGHT_PT], ...
-    'Color', 'white');
+fig_hw = figure( 'Units', 'points',  'Position', [100 100 PDF_WIDTH_PT PDF_HEIGHT_PT], 'Color', 'white');
 
 plot(sample_idx, voltage(1:PLOT_N), 'b', 'LineWidth', 1.0);
 grid on;
@@ -66,34 +59,19 @@ ax.LineWidth = 0.8;
 ylim([0 VREF]);
 xlim([0 PLOT_N]);
 
-xlabel('Sample', ...
-    'FontName', 'Times New Roman', ...
-    'FontSize', 10);
+xlabel('Sample',  'FontName', 'Times New Roman', 'FontSize', 10);
 
-ylabel('Voltage (V)', ...
-    'FontName', 'Times New Roman', ...
-    'FontSize', 10);
+ylabel('Voltage (V)', 'FontName', 'Times New Roman', 'FontSize', 10);
 
-title('FPGA-IIR Filter Output - UART 921600', ...
-    'FontName', 'Times New Roman', ...
-    'FontSize', 12, ...
-    'FontWeight', 'bold');
+title('FPGA-IIR Filter Output - UART 921600',  'FontName', 'Times New Roman', 'FontSize', 12,  'FontWeight', 'bold');
 
 last_v   = voltage(PLOT_N);
 last_adc = adc_code(PLOT_N);
 
-text(0.02, 0.95, ...
-    sprintf('Latest: %.3f V (ADC=%d)', last_v, last_adc), ...
-    'Units', 'normalized', ...
-    'FontName', 'Times New Roman', ...
-    'FontSize', 8, ...
-    'Color', [0.3 0.3 0.3]);
+text(0.02, 0.95,  sprintf('Latest: %.3f V (ADC=%d)', last_v, last_adc),  'Units', 'normalized', 'FontName', 'Times New Roman', 'FontSize', 8,  'Color', [0.3 0.3 0.3]);
 
-set(fig_hw, ...
-    'Renderer', 'painters', ...
-    'InvertHardcopy', 'off');
+set(fig_hw, 'Renderer', 'painters', 'InvertHardcopy', 'off');
 
-%% TAO TEN FILE
 switch ARCH_NAME
     case 'df1'
         arch_file = 'df1';
@@ -132,8 +110,7 @@ hw_export_name = fullfile(SAVE_DIR, ...
 pdf_file = [hw_export_name '.pdf'];
 png_file = [hw_export_name '.png'];
 
-%% XUAT PDF DUNG 335 x 226 POINT
-% Khong dung exportgraphics cho PDF vi exportgraphics co the tu crop trang.
+
 set(fig_hw, ...
     'PaperUnits', 'points', ...
     'PaperSize', [PDF_WIDTH_PT PDF_HEIGHT_PT], ...
@@ -142,7 +119,6 @@ set(fig_hw, ...
 
 print(fig_hw, pdf_file, '-dpdf', '-painters');
 
-%% XUAT PNG CUNG TY LE HINH
 print(fig_hw, png_file, '-dpng', '-r600');
 
 fprintf('\nDa xuat:\n');
