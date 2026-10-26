@@ -171,6 +171,29 @@ filenames to match the files actually included in this repository.
     analog-to-digital acquisition.
 -   **EBAZ4205 / Zynq XC7Z010** --- FPGA implementation platform.
 
+## How to Use
+
+1.  Clone or download this repository.
+2.  Open the Vivado project or create a project targeting the Zynq
+    XC7Z010 device.
+3.  Add the RTL source files and the applicable XDC constraints.
+4.  Select the desired filter architecture at the top-level
+    configuration, if the project supports architecture selection.
+5.  Run RTL simulation using the provided testbench and test vectors.
+6.  Run synthesis and implementation, then review utilization and timing
+    reports.
+7.  If reproducing the hardware experiment, connect the MCP3208 ADC,
+    MCP4921 DAC, ESP32, UART interface, and EBAZ4205 according to the
+    circuit documentation.
+8.  Run the host-side serial display/analysis script using the correct
+    serial port and baud rate.
+
+> **Note:** Exact Vivado setup steps, top-module names, simulation
+> commands, serial-port settings, and pin assignments depend on the
+> source files and board configuration included in the repository.
+> Update this section with the actual filenames and instructions before
+> publishing.
+
 ## Authors and Acknowledgment
 
 **Authors** - Nguyen Duy Hung (Nguyễn Duy Hưng)
