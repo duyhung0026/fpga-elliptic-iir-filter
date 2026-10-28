@@ -1,9 +1,8 @@
 # FPGA Implementation of Elliptic IIR Low-Pass Filter Architectures on EBAZ4205
 
-Hi! I'm a recent graduate interested in RTL design, FPGA, and digital verification.
 I've been working on personal projects to develop my skills and build my engineering portfolio.
 My projects may contain a few bugs that I haven't discovered yet, so I hope you can understand and bear with me.
-I'd really appreciate a ⭐ on GitHub. Any feedback is also welcome!
+I'd really appreciate a ⭐ on GitHub!
 
 ## Project Overview
 
