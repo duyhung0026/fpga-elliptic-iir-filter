@@ -169,6 +169,6 @@ The layout below is a suggested organization. Adjust directory and filenames to 
 
 **Institution**
 
-- Ho Chi Minh City University of Technology and Education (HCMUTE)
+- Ho Chi Minh City University of Technology and Engineering (HCMUTE)
 
-This project was completed as a graduation thesis in Electronic and Telecommunication Engineering (July 2026).
+This project was completed as a graduation thesis in Electronic and Telecommunication Engineering (Oct 2026).
